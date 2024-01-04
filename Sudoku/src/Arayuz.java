@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Arayuz extends Sudoku {
-    ImageIcon resim = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/bas.png");
-    ImageIcon icon = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/giris.jpg");
+    ImageIcon resim = new ImageIcon("Sudoku/image/bas.png");
+    ImageIcon icon = new ImageIcon("Sudoku/image/giris.jpg");
     JFrame framee = new JFrame();
     JLabel label = new JLabel();
     JPanel panel = new JPanel();

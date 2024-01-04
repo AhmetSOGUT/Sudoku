@@ -10,8 +10,8 @@ class GirisEkrani  implements ActionListener{
     static String zorlukTutucu="kolay";
     JFrame frame = new JFrame("Sudoku");
     JTextField isim = new JTextField();
-    ImageIcon icon = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/sas.png");
-    ImageIcon iconic = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/giris.jpg");
+    ImageIcon icon = new ImageIcon("Sudoku/image/sas.png");
+    ImageIcon iconic = new ImageIcon("Sudoku/image/giris.jpg");
     JLabel label = new JLabel();
     JPanel panel = new JPanel();
     JButton buton = new JButton("Giriş");

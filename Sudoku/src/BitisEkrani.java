@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 public class BitisEkrani implements ActionListener {
 
     JFrame frame = new JFrame("Sudoku");
-    ImageIcon icon = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/sas.png");
-    ImageIcon iconic = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/giris.jpg");
+    ImageIcon icon = new ImageIcon("Sudoku/image/sas.png");
+    ImageIcon iconic = new ImageIcon("Sudoku/image/giris.jpg");
     JLabel label = new JLabel();
     JLabel label1 = new JLabel();
     JPanel panel1 = new JPanel();
