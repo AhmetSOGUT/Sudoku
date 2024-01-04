@@ -7,7 +7,7 @@ class Sudoku  {
     List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
     private static final int SIZE = 9;
     private final int[][] board;
-    private int[][] board1;
+    private final int[][] board1;
     String zorlukTutucu;
 
     public Sudoku(String zorlukTutucu) {

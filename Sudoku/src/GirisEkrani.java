@@ -10,7 +10,8 @@ class GirisEkrani  implements ActionListener{
     static String zorlukTutucu="kolay";
     JFrame frame = new JFrame("Sudoku");
     JTextField isim = new JTextField();
-    ImageIcon icon = new ImageIcon("Sudoku/image/sas.png");
+    ImageIcon icon = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/sas.png");
+    ImageIcon iconic = new ImageIcon("C:/Users/ahmet/OneDrive/Masaüstü/SudokuJava1-main/Sudoku/Sudoku/image/giris.jpg");
     JLabel label = new JLabel();
     JPanel panel = new JPanel();
     JButton buton = new JButton("Giriş");
@@ -22,7 +23,7 @@ class GirisEkrani  implements ActionListener{
         label.setIcon(icon);
         panel.setBounds(48,0,675,675);
 
-
+        frame.setIconImage(iconic.getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setBounds(400,75,800,700);
@@ -76,6 +77,7 @@ class GirisEkrani  implements ActionListener{
             }
             frame.setVisible(false);
             arayuz.setVisible(true);
+            frame.dispose();
         }
     }
 
