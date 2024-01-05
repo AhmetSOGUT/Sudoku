@@ -16,8 +16,10 @@ class GirisEkrani  implements ActionListener{
     JPanel panel = new JPanel();
     JButton buton = new JButton("Giriş");
     JComboBox zorluklar = new JComboBox(zorluk);
+    String adi;
 
-
+    //BitisEkrani  çağrıldığında iki pencere açılmaması için boş constructor gerekliydi.
+    GirisEkrani(int a){}
     GirisEkrani(){
 
         label.setIcon(icon);
@@ -54,7 +56,8 @@ class GirisEkrani  implements ActionListener{
 
         if(e.getSource()==buton){
 
-            Arayuz arayuz =new Arayuz(zorlukTutucu);
+
+            adi= isim.getText();
 
             if (!file.exists()){
                 try {
@@ -64,22 +67,40 @@ class GirisEkrani  implements ActionListener{
                 }
             }
 
-            String adı =isim.getText();
+            adi =isim.getText();
+            try {
+                if (adi.isEmpty())
+                    throw new IllegalArgumentException();
 
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write("");
-                writer.write(adı+" "+zorlukTutucu);
-                writer.write("");
-                writer.close();
 
-            } catch (IOException a) {
-                a.printStackTrace();
+                Arayuz arayuz =new Arayuz(zorlukTutucu);
+                frame.setVisible(false);
+                arayuz.setVisible(true);
+                frame.dispose();
+
+                try (FileWriter writer = new FileWriter(file,true)) {
+                    BufferedWriter bufferedWriter = new BufferedWriter(writer);
+                    bufferedWriter.newLine();
+                    bufferedWriter.write(adi+" - "+zorlukTutucu);
+                    bufferedWriter.close();
+
+                }
+                catch (IOException a) {
+                    a.printStackTrace();
+                }
+
+            }catch (IllegalArgumentException exception){
+                System.out.println("İsim boş bırakılamaz!!!");
+                JOptionPane.showMessageDialog(null, "Kullanıcı adı boş bırakılamaz");
             }
-            frame.setVisible(false);
-            arayuz.setVisible(true);
-            frame.dispose();
-        }
-    }
 
+
+
+
+        }
+
+
+
+}
 }
 

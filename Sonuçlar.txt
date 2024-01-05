@@ -1,1 +1,8 @@
- kolay
+İsim - Zorluk - Başarı Süresi
+
+
+Ahmet - kolay - 00:28
+
+Sina - kolay -  başarısız
+
+Emre - kolay - Yeni oyuna geçildi 

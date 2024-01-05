@@ -2,22 +2,29 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class Arayuz extends Sudoku {
     ImageIcon resim = new ImageIcon("Sudoku/image/bas.png");
     ImageIcon icon = new ImageIcon("Sudoku/image/giris.jpg");
+    File file = new File("Sonuçlar.txt");
     JFrame framee = new JFrame();
     JLabel label = new JLabel();
     JPanel panel = new JPanel();
+    JMenu menu = new JMenu("Yeni Oyun");
+    JMenuBar menuBar = new JMenuBar();
     JButton[][] buton ;
     JButton[] degerler;
     int degerTutucu;
     int[][] sayılar;
     JLabel zamanTablosu;
     Timer zamanlayici;
-    int kalanZaman = 119;
-     int tumZaman = 119;
+    int kalanZaman ;
+     int tumZaman ;
      String zorlukTutucu;
     Arayuz(String zorlukTutucu){
         super(zorlukTutucu);
@@ -27,6 +34,7 @@ public class Arayuz extends Sudoku {
         degerler= new JButton[9];
         sayılar = new int[9][9];
 
+        menu();
         tahtadakiSayilar();
         degerler();
         ekran();
@@ -112,7 +120,9 @@ public class Arayuz extends Sudoku {
                                         int minutes = (tumZaman / 60)-(kalanZaman / 60);
                                         int seconds = (tumZaman % 60)-(kalanZaman % 60)+1;
                                         String timeString = String.format("%02d:%02d", minutes, seconds);
-                                        BitisEkrani bitisEkrani = new BitisEkrani(timeString);}
+                                        BitisEkrani bitisEkrani = new BitisEkrani(timeString);
+                                        zamanlayici.stop();
+                                       bitisEkrani.basarili();}
                                 }
                             }
                         }
@@ -164,7 +174,8 @@ public class Arayuz extends Sudoku {
                     JOptionPane.showMessageDialog(null, "Zaman doldu oyun burda biter!..");
 
                     framee.dispose();
-                    BasarisizBitis bitis = new BasarisizBitis();
+                    BitisEkrani bitisEkrani = new BitisEkrani(timeString);
+                    bitisEkrani.basarisiz();
                 }
             }
         });
@@ -187,6 +198,47 @@ public class Arayuz extends Sudoku {
     public void setVisible(boolean a){
         framee.setVisible(a);
     }
+
+
+    public void menu(){
+
+   JMenuItem Yeeni = new JMenuItem("Yeni oyun");
+    menu.add(Yeeni);
+
+    Yeeni.addActionListener(new ActionListener() {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==Yeeni){
+           zamanlayici.stop();
+            framee.dispose();
+            GirisEkrani girisEkrani =new GirisEkrani();
+            if (!file.exists()){
+                try {
+                    file.createNewFile();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+
+            try (FileWriter writer = new FileWriter(file,true)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(writer);
+                bufferedWriter.write(" - Yeni oyuna geçildi ");
+                bufferedWriter.close();
+
+            }
+            catch (IOException a) {
+                a.printStackTrace();
+            }
+        }
+    }
+});
+    menuBar.add(menu);
+
+        framee.setJMenuBar(menuBar);
+    }
+
 }
 
 
