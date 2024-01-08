@@ -9,22 +9,22 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Arayuz extends Sudoku {
-    ImageIcon resim = new ImageIcon("Sudoku/image/bas.png");
+    ImageIcon resim = new ImageIcon("Sudoku/image/board.png");
     ImageIcon icon = new ImageIcon("Sudoku/image/giris.jpg");
     File file = new File("Sonuçlar.txt");
     JFrame framee = new JFrame();
     JLabel label = new JLabel();
-    JPanel panel = new JPanel();
+    JLabel label1 = new JLabel();
     JMenu menu = new JMenu("Yeni Oyun");
     JMenuBar menuBar = new JMenuBar();
     JButton[][] buton ;
     JButton[] degerler;
-    int degerTutucu;
-    int[][] sayılar;
+    private int degerTutucu;
+    private int[][] sayılar;
     JLabel zamanTablosu;
     Timer zamanlayici;
     int kalanZaman ;
-     int tumZaman ;
+    int tumZaman ;
      String zorlukTutucu;
     Arayuz(String zorlukTutucu){
         super(zorlukTutucu);
@@ -37,21 +37,35 @@ public class Arayuz extends Sudoku {
         menu();
         tahtadakiSayilar();
         degerler();
-        ekran();
+
         baslaGeriSayim();
+        ekran();
     }
     private void ekran(){
         framee.setIconImage(icon.getImage());
-        panel.setBounds(20,20,800,800);
+        label.setBounds(35,-32,800,800);
         label.setIcon(resim);
-        framee.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel.add(label);
-        framee.add(panel);
+        label1.setBounds(-60, 0, 2000, 2000);
+        label1.setLayout(null);
+
+        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+        backgroundLabel.setBounds(60, 0, 2000, 2000);
+
+
 
         framee.setLayout(null);
         framee.setMinimumSize(new Dimension(1000,800));
         framee.setBounds(250,11,1000,500);
+
+        framee.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        label.add(backgroundLabel);
+        label1.add(backgroundLabel);
+
+        framee.add(label);
+        framee.add(label1);
+
+
     }
     private void degerler(){
         for (int x = 0 ;x<9;x++){
@@ -201,12 +215,9 @@ public class Arayuz extends Sudoku {
 
 
     public void menu(){
-
    JMenuItem Yeeni = new JMenuItem("Yeni oyun");
     menu.add(Yeeni);
-
     Yeeni.addActionListener(new ActionListener() {
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==Yeeni){
@@ -220,13 +231,10 @@ public class Arayuz extends Sudoku {
                     throw new RuntimeException(ex);
                 }
             }
-
-
             try (FileWriter writer = new FileWriter(file,true)) {
                 BufferedWriter bufferedWriter = new BufferedWriter(writer);
                 bufferedWriter.write(" - Yeni oyuna geçildi ");
                 bufferedWriter.close();
-
             }
             catch (IOException a) {
                 a.printStackTrace();
@@ -235,7 +243,6 @@ public class Arayuz extends Sudoku {
     }
 });
     menuBar.add(menu);
-
         framee.setJMenuBar(menuBar);
     }
 

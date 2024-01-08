@@ -3,3 +3,7 @@ public void basarisiz();
 public void basarili();
 
 }
+
+
+
+

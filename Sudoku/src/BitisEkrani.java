@@ -3,26 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-
-public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
-
+public class BitisEkrani  implements ActionListener,Bitis {
+    File file = new File("Sonuçlar.txt");
     JFrame frame = new JFrame("Sudoku");
     ImageIcon icon = new ImageIcon("Sudoku/image/sas.png");
+    ImageIcon basariliImage = new ImageIcon("Sudoku/image/basarili.png");
     ImageIcon iconic = new ImageIcon("Sudoku/image/giris.jpg");
     JLabel label = new JLabel();
     JLabel label1 = new JLabel();
-    JPanel panel1 = new JPanel();
-    JPanel panel = new JPanel();
+    JLabel label2 = new JLabel();
     static String zaman ;
-
     JButton buton = new JButton("Yeni oyun");
 
     BitisEkrani(String zaman){
-        super(1);
+
         this.zaman=zaman;
         ekran();
     }
-
     public void ekran(){
         frame.setIconImage(iconic.getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,40 +29,42 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
         frame.setVisible(true);
 
 
-        buton.setBounds(320,500,130,30);
+        buton.setBounds(340,480,130,30);
 
         buton.addActionListener(this);
 
         frame.add(buton);
-
     }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource()==buton){
-
-
             frame.setVisible(false);
             frame.dispose();
             GirisEkrani girisEkrani = new GirisEkrani();
         }
-
     }
-
     @Override
     public void basarisiz() {
         label.setIcon(icon);
-        panel.setBounds(48,0,675,675);
         label.setText("Süreniz doldu maalesef basarısız oldunuz");
+        label.setBounds(210,30,500,420);
+
+        label2.setBounds(-150, 0, 2000, 2000); // label1 boyutları
+        label2.setLayout(null);
+
+        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+        backgroundLabel.setBounds(60, 0, 2000, 2000);
 
         label.setHorizontalTextPosition(JLabel.CENTER);
         label.setVerticalTextPosition(JLabel.BOTTOM);
         label.setFont(new Font("MV Boli",Font.CENTER_BASELINE,20));
 
-        panel.add(label);
-        frame.add(panel);
+        label.add(backgroundLabel);
+        label2.add(backgroundLabel);
+
+        frame.add(label);
+        frame.add(label2);
 
         if (!file.exists()){
             try {
@@ -74,9 +73,7 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
                 throw new RuntimeException(ex);
             }
         }
-
         System.out.println(zaman);
-
         try (FileWriter writer = new FileWriter(file,true)) {
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
             bufferedWriter.write(" - "+" başarısız");
@@ -86,16 +83,21 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
         } catch (IOException a) {
             a.printStackTrace();
         }
-
-
-
     }
-
     @Override
     public void basarili() {
-        label.setIcon(icon);
-        panel.setBounds(140,0,500,420);
-        panel1.setBounds(150,415,400,30);
+        label.setIcon(basariliImage);
+        label.setBounds(170,0,500,420);
+        label1.setBounds(220,415,400,30);
+
+        label2.setBounds(0, 0, 800, 700);
+        label2.setLayout(null);
+
+        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+        backgroundLabel.setBounds(0, 0, 2000, 2000);
+
+        label.add(backgroundLabel);
+        label2.add(backgroundLabel);
 
         label.setText("    Tebrikler   ");
         label1.setText("      Bitirme Süreniz :  "+zaman);
@@ -109,11 +111,9 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
         label.setFont(new Font("MV Boli",Font.CENTER_BASELINE,20));
         label1.setFont(new Font("MV Boli",Font.CENTER_BASELINE,20));
 
-        panel1.add(label1);
-        panel.add(label);
-
-        frame.add(panel1);
-        frame.add(panel);
+        frame.add(label1);
+        frame.add(label);
+        frame.add(label2);
 
         if (!file.exists()){
             try {
@@ -122,7 +122,6 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
                 throw new RuntimeException(ex);
             }
         }
-
         System.out.println(zaman);
 
         try (FileWriter writer = new FileWriter(file,true)) {
@@ -136,7 +135,5 @@ public class BitisEkrani extends GirisEkrani implements ActionListener,Bitis {
         } catch (IOException a) {
             a.printStackTrace();
         }
-
-
     }
 }

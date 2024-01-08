@@ -18,7 +18,6 @@ class Sudoku  {
         copy();
         bosBirak();
     }
-
     private boolean isValid(int row, int col, int num) {
         for (int i = 0; i < SIZE; i++) {
             if (board[row][i] == num || board[i][col] == num) {
@@ -36,7 +35,6 @@ class Sudoku  {
         }
         return true;
     }
-
     private boolean kontrolSudoku() {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
