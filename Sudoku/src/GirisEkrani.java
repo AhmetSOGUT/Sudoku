@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.file.Paths;
+
 class GirisEkrani  implements ActionListener{
     String[] zorluk={"kolay","orta","zor"};
     File file = new File("Sonuçlar.txt");
@@ -13,9 +15,10 @@ class GirisEkrani  implements ActionListener{
     ImageIcon iconic = new ImageIcon("Sudoku/image/giris.jpg");
     JLabel label = new JLabel();
     JLabel label1 = new JLabel();
-
+    String pathBackgroun= Paths.get("src", "Sudoku/image/background.jpg").toString();
     JButton buton = new JButton("Giriş");
     JComboBox zorluklar = new JComboBox(zorluk);
+    JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
     String adi;
     GirisEkrani() {
         // label ve label1 oluşturuldu
@@ -39,7 +42,7 @@ class GirisEkrani  implements ActionListener{
         buton.addActionListener(this);
 
         // label ve label1 arka plan resimlerini eklemek için
-        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+
         backgroundLabel.setBounds(0, 0, 800, 700); // Boyutları pencere boyutlarına göre ayarlayabilirsiniz
 
         label.add(backgroundLabel);

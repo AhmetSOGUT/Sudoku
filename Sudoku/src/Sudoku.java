@@ -18,16 +18,16 @@ class Sudoku  {
         copy();
         bosBirak();
     }
-    private boolean isValid(int row, int col, int num) {
+    private boolean gecerliMi(int x, int y, int num) {
         for (int i = 0; i < SIZE; i++) {
-            if (board[row][i] == num || board[i][col] == num) {
+            if (board[x][i] == num || board[i][y] == num) {
                 return false;
             }
         }
-        int boxRowStart = row - row % 3;
-        int boxColStart = col - col % 3;
-        for (int i = boxRowStart; i < boxRowStart + 3; i++) {
-            for (int j = boxColStart; j < boxColStart + 3; j++) {
+        int kucuk3x = x - x % 3;
+        int kucuk3y = y - y % 3;
+        for (int i = kucuk3x; i < kucuk3x + 3; i++) {
+            for (int j = kucuk3y; j < kucuk3y + 3; j++) {
                 if (board[i][j] == num) {
                     return false;
                 }
@@ -35,19 +35,19 @@ class Sudoku  {
         }
         return true;
     }
-    private boolean kontrolSudoku() {
-        for (int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                if (board[row][col] == 0) {
+    private boolean kontrolluYazi() {
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                if (board[x][y] == 0) {
                     Collections.shuffle(nums);
                     for (int i = 0; i < SIZE; i++) {
                         int num = nums.get(i);
-                        if (isValid(row, col, num)) {
-                            board[row][col] = num;
-                            if (kontrolSudoku()) {
+                        if (gecerliMi(x, y, num)) {
+                            board[x][y] = num;
+                            if (kontrolluYazi()) {
                                 return true;
                             } else {
-                                board[row][col] = 0;
+                                board[x][y] = 0;
                             }
                         }
                     }
@@ -59,11 +59,11 @@ class Sudoku  {
     }
 
     private void sudokuOlustur() {
-        kontrolSudoku();
+        kontrolluYazi();
     }
 
     private void sudokuOlusturBos() {
-        kontrolSudoku();
+        kontrolluYazi();
     }
 
     private void copy() {

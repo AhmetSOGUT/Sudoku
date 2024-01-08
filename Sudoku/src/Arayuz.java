@@ -25,6 +25,7 @@ public class Arayuz extends Sudoku {
     Timer zamanlayici;
     int kalanZaman ;
     int tumZaman ;
+    JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
      String zorlukTutucu;
     Arayuz(String zorlukTutucu){
         super(zorlukTutucu);
@@ -49,7 +50,7 @@ public class Arayuz extends Sudoku {
         label1.setBounds(-60, 0, 2000, 2000);
         label1.setLayout(null);
 
-        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+
         backgroundLabel.setBounds(60, 0, 2000, 2000);
 
 

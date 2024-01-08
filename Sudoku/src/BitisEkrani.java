@@ -9,6 +9,7 @@ public class BitisEkrani  implements ActionListener,Bitis {
     ImageIcon icon = new ImageIcon("Sudoku/image/sas.png");
     ImageIcon basariliImage = new ImageIcon("Sudoku/image/basarili.png");
     ImageIcon iconic = new ImageIcon("Sudoku/image/giris.jpg");
+    JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
     JLabel label = new JLabel();
     JLabel label1 = new JLabel();
     JLabel label2 = new JLabel();
@@ -53,7 +54,7 @@ public class BitisEkrani  implements ActionListener,Bitis {
         label2.setBounds(-150, 0, 2000, 2000); // label1 boyutları
         label2.setLayout(null);
 
-        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+
         backgroundLabel.setBounds(60, 0, 2000, 2000);
 
         label.setHorizontalTextPosition(JLabel.CENTER);
@@ -93,7 +94,7 @@ public class BitisEkrani  implements ActionListener,Bitis {
         label2.setBounds(0, 0, 800, 700);
         label2.setLayout(null);
 
-        JLabel backgroundLabel = new JLabel(new ImageIcon("Sudoku/image/background.jpg"));
+
         backgroundLabel.setBounds(0, 0, 2000, 2000);
 
         label.add(backgroundLabel);
